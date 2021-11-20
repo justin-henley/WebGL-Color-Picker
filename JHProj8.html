@@ -1,0 +1,77 @@
+<!-- 
+Course:     CSCI 431 VA
+Project:    8 - A Free Choice Project
+Author:     Justin Henley, jahenley@mail.fhsu.edu
+Date:       2021-11-10
+
+Description:    I chose to do problem 11 from the textbook, an interactive color picker.
+                "8.11 Write an interactive program that will return the colors of pixels on the display."
+                I did some extra styling to practice my web design skills.
+
+Required Files: JHProj8.js, initShaders.js, MV.js, webgl-utils.js
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Color Picker</title>
+    <style type="text/css">
+        #color-output{
+            background-color: black;
+            color: white;
+            width: 492px;
+            border: 10px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- Create the WebGL canvas -->
+    <div id = "color-canvas">
+        <canvas id="webgl-canvas" width="512" height="512">
+        Please reopen this page in a modern browser.
+        </canvas>  
+    </div>
+
+    <!-- Report the picked color -->
+    <div id="color-output">Please click on the image to pick a color.</div>
+
+    <!-- Vertex Shader -->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        #version 300 es
+
+        in vec4 aPosition;
+        in vec4 aColor;
+        out vec4 vColor;
+
+        void main(){
+            vColor = aColor;
+            gl_Position = aPosition;
+        }
+    </script>
+
+
+    <!-- Fragment Shader -->
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        #version 300 es
+
+        precision mediump float;
+
+        in vec4 vColor;
+        out vec4 fColor;
+
+        void main(){
+            fColor = vColor;
+        }
+    </script>
+
+
+    <script type="application/javascript" src="initShaders.js"></script>
+    <script type="application/javascript" src="MV.js"></script>
+    <script type="application/javascript" src="JHProj8.js"></script>
+    <script type="application/javascript" src="webgl-utils.js"></script>
+</body>
+</html>
